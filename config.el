@@ -40,8 +40,25 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/Projects/org/")
 
+;; show hidden files
+(setq-default neo-show-hidden-files t)
+
+(after! neotree
+  (setq neo-smart-open t
+        neo-window-fixed-size nil))
+(after! doom-themes
+  (setq doom-neotree-enable-variable-pitch t))
+(map! :leader
+      :desc "Toggle neotree file viewer" "t n" #'neotree-toggle
+      :desc "Open directory in neotree" "d n" #'neotree-dir)
+
+;;(nvmap :prefix "SPC"
+;;       "t n"   '(neotree-toggle :which-key "Toggle neotree file viewer")
+;;       "d n"   '(neotree-dir :which-key "Open directory in neotree"))
+
+(setq projectile-project-search-path '("~/Projects/" ))
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
